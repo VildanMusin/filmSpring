@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FilmRepository extends JpaRepository<Film, Long> {
+public interface FilmRepository extends JpaRepository<Film, Long>, FilmCustomRepository {
     boolean existsByFilmId (Integer filmId);
     @Query("SELECT f FROM Film f WHERE " +
             "(:name IS NULL OR LOWER(f.filmName) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +

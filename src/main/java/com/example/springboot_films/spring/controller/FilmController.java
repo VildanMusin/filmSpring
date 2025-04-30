@@ -2,6 +2,7 @@ package com.example.springboot_films.spring.controller;
 
 import com.example.springboot_films.spring.convertor.FilmMapper;
 import com.example.springboot_films.spring.dto.FilmDto;
+import com.example.springboot_films.spring.dto.FilmSearchFilter;
 import com.example.springboot_films.spring.dto.ItemDto;
 import com.example.springboot_films.spring.entity.Film;
 import com.example.springboot_films.spring.repository.FilmRepository;
@@ -73,8 +74,11 @@ public class FilmController {
     @GetMapping("/filmAll")
     public List<Film> getFromDb(){
         return filmService.getFromDb();
-
     }
 
+    @GetMapping("/films/filter")
+    public Page<Film> searchFilmsWithFilters(FilmSearchFilter filter) {
+        return filmRepository.findByFilter(filter);
+    }
 
 }
