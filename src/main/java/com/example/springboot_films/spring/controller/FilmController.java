@@ -1,5 +1,6 @@
 package com.example.springboot_films.spring.controller;
 
+import com.example.springboot_films.spring.Scheduler.FilmScheduler;
 import com.example.springboot_films.spring.convertor.FilmMapper;
 import com.example.springboot_films.spring.dto.FilmDto;
 import com.example.springboot_films.spring.dto.FilmSearchFilter;
@@ -22,6 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v2")
 public class FilmController {
+
+    @Autowired
+    private FilmScheduler filmScheduler;
 
     private static final Logger logger = LoggerFactory.getLogger(FilmController.class);
 
@@ -80,5 +84,7 @@ public class FilmController {
     public Page<Film> searchFilmsWithFilters(FilmSearchFilter filter) {
         return filmRepository.findByFilter(filter);
     }
+
+
 
 }

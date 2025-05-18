@@ -2,9 +2,12 @@ package com.example.springboot_films.spring.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "films")
-public class Film {
+public class Film implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,6 +28,8 @@ public class Film {
     @Column(name = "description")
     private String description;
 
+
+    private long title;
     public Film() {
     }
 
@@ -51,8 +56,8 @@ public class Film {
         return filmId;
     }
 
-    public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
+    public void setFilmId(Long filmId) {
+        this.filmId = Math.toIntExact(filmId);
     }
 
     public String getFilmName() {
@@ -97,5 +102,19 @@ public class Film {
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+
+    public void setTitle(long title) {
+        this.title = title;
+    }
+
+    public void setYear(String year) {
+    }
+
+
+
+    public String getTitle() {
+        return null;
     }
 }
